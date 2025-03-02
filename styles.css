@@ -1,0 +1,95 @@
+/* Общие стили */
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #4CAF50;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.features ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.cta button {
+    display: inline-block;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.cta button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #f9f9f9;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Скрытие форм */
+.hidden {
+    display: none;
+}
+
+/* Стилизация форм */
+#register-form, #login-form {
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#register-form input, #login-form input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#register-form button, #login-form button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;selector {
+        padding: 10px; /* Значение свойства padding */
+    }
+    selector {
+        padding-top: 10px;   /* Верхний отступ */
+        padding-right: 20px; /* Правый отступ */
+        padding-bottom: 15px;/* Нижний отступ */
+        padding-left: 30px;  /* Левый отступ */
+    }

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск КБЖУ | Удобный Сервис для Сбалансированного Меню</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 28px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50; /* Зелёный цвет */
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 70%;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #388E3C; /* Более тёмный зелёный при наведении */
+        }
+
+        .result-container {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+            form {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h2>Поиск КБЖУ Блюд</h2>
+        <form id="searchForm" action="/search" method="GET">
+            <label for="dishName">Название блюда:</label>
+            <input type="text" id="dishName" name="dishName" placeholder="Введите название блюда">
+            <button type="submit">Найти КБЖУ</button>
+            <img src="\Users\antan\Pictures/fgfg.jpg" alt="логотип ">
+        </form>
+        <div id="resultsContainer" class="result-container"></div>
+        <script>
+            document.getElementById('searchForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const dishName = document.getElementById('dishName').value;
+
+                fetch(`/api/search?dish=${encodeURIComponent(dishName)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const resultsContainer = document.getElementById('resultsContainer');
+                        resultsContainer.innerHTML = '';
+
+                        data.forEach(item => {
+                            const resultItem = document.createElement('div');
+                            resultItem.className = 'result-item';
+
+                            resultItem.innerHTML = `
+                                <strong>Название блюда:</strong> ${item.name}<br>
+                                <strong>Калории:</strong> ${item.calories}<br>
+                                <strong>Белки:</strong> ${item.protein}g<br>
+                                <strong>Жиры:</strong> ${item.fat}g<br>
+                                <strong>Углеводы:</strong> ${item.carbohydrates}g
+                            `;
+
+                            resultsContainer.appendChild(resultItem);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Произошла ошибка при поиске КБЖУ. Попробуйте снова.');
+                    });
+            });
+        </script>
+    </main>
+</body>
+</html>

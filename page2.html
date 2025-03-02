@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход | Удобный Сервис для Сбалансированного Меню</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 28px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 60%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50; /* Зелёный цвет */
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 70%;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #388E3C; /* Более тёмный зелёный при наведении */
+        }
+
+        @media only screen and (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+            form {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h2>Вход</h2>
+        <form id="loginForm" action="/login" method="POST">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password">
+            <button type="submit">Войти</button>
+        </form>
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Предотвращаем стандартное поведение формы
+
+                // Получаем данные из формы
+                let enteredUsername = document.getElementById('username').value;
+                let enteredPassword = document.getElementById('password').value;
+
+                // Получаем сохранённый пароль из localStorage
+                let savedPassword = localStorage.getItem('savedPassword');
+
+                if (enteredPassword === savedPassword) {
+                    // Пароли совпадают, переходим на page3.html
+                    alert('Вход выполнен успешно!');
+                    window.location.href = 'page3.html';
+                } else {
+                    // Пароли не совпадают, выводим ошибку
+                    alert('Неверный пароль. Попробуйте снова.');
+                }
+            });
+        </script>
+    </main>
+</body>
+</html>
